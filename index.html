@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Class 07 — Visual Design Essentials (Interactive)</title>
+  <title>Class 07 — Visual Design Essentials (Interactive + Concise Tutorial)</title>
   <style>
     :root{
       --bg:#0b1020; --panel:#0f1733; --ink:#e8ecff; --muted:#a9b3d1; --accent:#8bb2ff; --accent2:#6ee7b7;
@@ -69,17 +69,10 @@
     .foot{ color:var(--muted); text-align:center; font-size:.85rem; margin-top:1.25rem; }
     .tag{ font-family:var(--mono); font-size:.72rem; padding:.08rem .4rem; border-radius:.4rem; border:1px solid rgba(139,178,255,.28); color:var(--accent2); }
 
-    /* small helper chips */
     .chips{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0 .2rem; }
     .chip{ font-family:var(--mono); font-size:.72rem; padding:.12rem .4rem; border-radius:.5rem; background:rgba(139,178,255,.08); border:1px solid rgba(139,178,255,.25); }
 
-    /* highlight search matches */
     mark{ background:rgba(110,231,183,.25); padding:.05rem .1rem; border-radius:.2rem; }
-
-    @media (prefers-reduced-motion:no-preference){
-      details.block{ transition: background .2s ease; }
-      nav.toc a{ transition: transform .15s ease, background .15s ease, border-color .15s ease; }
-    }
   </style>
 </head>
 <body>
@@ -87,10 +80,11 @@
     <div class="wrap">
       <div class="title">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <h1>Class 07 — Visual Design Essentials (Interactive Tutorial)</h1>
+        <h1>Class 07 — Visual Design Essentials (Interactive + Concise)</h1>
       </div>
       <div class="subtitle">Visual Hierarchy · Gestalt Theory · Layout Principles · Typography</div>
       <nav class="toc" aria-label="Table of contents">
+        <a href="#concise"><span class="badge">00</span> Concise Tutorial</a>
         <a href="#hierarchy"><span class="badge">01</span> Visual Hierarchy</a>
         <a href="#gestalt"><span class="badge">02</span> Gestalt Theory</a>
         <a href="#layout"><span class="badge">03</span> Layout Principles</a>
@@ -108,6 +102,78 @@
         <button class="btn" id="clearQ" title="Clear">Clear</button>
       </div>
     </div>
+
+    <!-- NEW: Concise Tutorial merged in without removing original content -->
+    <section class="lesson" id="concise">
+      <h2>Concise Tutorial — Effective Visual Design & Typography <span class="tag">merged summary</span></h2>
+      <p class="kicker">A compact, copy‑ready outline covering hierarchy, layout & Gestalt, and typography/legibility.</p>
+
+      $1<div class="explain">
+  <h3>I. Mastering Visual Hierarchy and Flow</h3>
+  <ol>
+    <li><strong>Control the Experience Delivery:</strong> Visual hierarchy is essential because it controls the delivery of the experience; a layout missing clear hierarchy makes it hard for the user to know where to look.</li>
+    <li><strong>Guide the Eye:</strong> Organize design elements so the eye is guided to consume each element in the intended order of importance.</li>
+    <li><strong>Utilize Natural Patterns (Reading Gravity):</strong> The eye naturally travels from the primary area to the terminal area (known as 'Reading Gravity,' reversed for right-to-left readers). Place important elements along this path.</li>
+    <li><strong>Direct Flow:</strong> While natural patterns describe text-heavy pages, you can add hierarchy, rhythm, repetition of elements, implied action, diagonal/directional/gestural lines, perspective, and gradation to direct the visual flow through your design.</li>
+  </ol>
+</div>
+      </details>
+
+      $1<div class="explain">
+  <h3>II. Applying Layout and Gestalt Principles</h3>
+  <ol>
+    <li><strong>Practice Proximity:</strong> Objects placed physically closer together are perceived as more related than those spaced further apart, which aids in creating unity. Group related controls by spacing them closer together to reduce visual clutter, rather than relying solely on boxes or borders.</li>
+    <li><strong>Use Alignment and Negative Space:</strong> Create layouts effectively by utilizing alignment (imaginary sightlines) and organizing the negative space. Ensure associated content is separated into visible sections through proper spacing and alignment.</li>
+    <li><strong>Introduce Contrast and Emphasis:</strong> Use contrast—the occurrence of differing elements like color, size, or value—to create interest and emphasize elements, pulling attention toward a focal point.</li>
+    <li><strong>Understand User Perception (Gestalt Theory):</strong> Realize that human vision is holistic and automatically imposes structure, wired to perceive whole shapes and objects. Review your design using these principles to avoid implying unintended visual relationships. Key principles include:
+      <ul>
+        <li><strong>Proximity:</strong> Relative distance determines grouping.</li>
+        <li><strong>Similarity:</strong> Objects that look alike appear grouped.</li>
+        <li><strong>Continuity &amp; Closure:</strong> The mind perceives continuous forms and automatically tries to close open figures to see whole objects.</li>
+        <li><strong>Symmetry:</strong> Scenes are parsed to reduce complexity and increase symmetry.</li>
+        <li><strong>Figure/Ground:</strong> The visual field is separated into the foreground (primary focus) and the background. Use Figure/Ground to provide context or convey information, such as placing new information over old content.</li>
+        <li><strong>Common Fate:</strong> Objects that move together (common motion) are perceived as grouped or related.</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+      </details>
+
+      $1<div class="explain">
+  <h3>III. Optimizing Typography for Legibility</h3>
+  <ol>
+    <li><strong>Maintain Consistency:</strong> Place controls and data displays that serve the same function in consistent locations across pages, using the same color, text fonts, and shading, as this allows users to quickly recognize them.</li>
+    <li><strong>Standardize Body Copy Size:</strong> For PRINT, body copy is typically 9 to 11 points. For DIGITAL formats (web/app), 16 points is the general guideline.</li>
+    <li><strong>Use Hierarchy in Type:</strong> Typographic hierarchy establishes an order of importance (e.g., Headline, Sub-headline, Body Copy) so readers can easily navigate content.</li>
+    <li><strong>Avoid ALL CAPS for Long Text:</strong> While ALL CAPS can add contrast, they are hard to read in long bodies of text.</li>
+    <li><strong>Minimize Script and Italics:</strong> Avoid using Italics and Scripts for extended text, as their tight spacing, curves, and slants make them difficult to read. Generally, use italic for emphasis and script for decorative purposes.
+      <ul>
+        <li><em>Tip for maximization:</em> If using these styles, pay close attention to letter/word spacing, increase line spacing if needed, and make the line length shorter than average.</li>
+      </ul>
+    </li>
+    <li><strong>Use Reverse Type Sparingly (Light Text on Dark Background):</strong> It is generally easier to read black type on a white background. Reserve reverse type for <strong>larger copy, such as headlines and sub-headlines</strong>.
+      <ul>
+        <li><strong>Avoid for Body Copy:</strong> Do not use reverse type for body copy or smaller type, as prolonged fixation can strain the user's eyes.</li>
+        <li><strong>Font Choice:</strong> Sans Serif typefaces are superior for reverse type; Serif typefaces can visually disappear when the serif thins.</li>
+        <li><strong>Contrast:</strong> Ensure sufficient contrast by making the background dark enough and the text light enough in color.</li>
+      </ul>
+    </li>
+    <li><strong>Choose Appropriate Weight:</strong> Avoid extra-heavy or extra-thin weights as they are less legible. Use a good solid bold for emphasis to provide contrast. Use regular weights in body copy.</li>
+    <li><strong>Prioritize Moderate Typefaces:</strong> Use moderate typefaces for extended text. Typefaces with strong visual flourishes distract readers, making them difficult to read in extended text.</li>
+    <li><strong>Handle Type on Graphics Carefully:</strong> Avoid putting type directly on top of textures, patterns, or images, as this makes the text very difficult to read. The solution is not merely changing color or size; rather, <strong>ensure the type is more important than the graphic</strong> so the two do not compete.</li>
+    <li><strong>Limit Font Count (Moderation is Key):</strong>
+      <ul>
+        <li>Limit to <strong>no more than 3 typefaces</strong> for print and website design.</li>
+        <li>Limit to <strong>no more than 1 typeface</strong> for App design (a single typeface includes its entire family, such as bold and italic).</li>
+      </ul>
+    </li>
+    <li><strong>Avoid "Type Tragedies":</strong> Do not use drop shadows, strokes/outlines, boxes around everything, or underlining, as these choices detract from legibility.</li>
+  </ol>
+</div>
+      </details>
+    </section>
+
+    <!-- Original Interactive Lessons preserved below -->
 
     <!-- Lesson 01: Visual Hierarchy -->
     <section class="lesson" id="hierarchy">
@@ -333,3 +399,4 @@
   </script>
 </body>
 </html>
+
