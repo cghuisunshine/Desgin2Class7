@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Class 07 — Visual Design Essentials (Interactive)</title>
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#0f1733; --ink:#e8ecff; --muted:#a9b3d1; --accent:#8bb2ff; --accent2:#6ee7b7;
+      --ring: rgba(139,178,255,.25); --hover: rgba(139,178,255,.08); --copied: rgba(110,231,183,.18);
+      --good:#6ee7b7; --warn:#facc15; --bad:#fb7185;
+      --radius:1rem;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { height:100%; }
+    body{
+      margin:0; font-family:var(--sans); background:linear-gradient(180deg, #0b1020, #0c1226);
+      color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter: blur(6px);
+      background:rgba(11,16,32,.7); border-bottom:1px solid rgba(139,178,255,.12);
+    }
+    .wrap{ max-width:1100px; margin:0 auto; padding:1rem 1.25rem; }
+    .title{ display:flex; align-items:center; gap:.75rem; }
+    .title h1{ font-size:1.35rem; margin:.1rem 0; letter-spacing:.2px; }
+    .subtitle{ color:var(--muted); font-size:.9rem; }
+
+    nav.toc{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:.5rem; margin-top:.75rem; }
+    nav.toc a{
+      display:flex; align-items:center; gap:.5rem; text-decoration:none; color:var(--ink);
+      background:var(--panel); border:1px solid rgba(139,178,255,.15); border-radius:var(--radius);
+      padding:.65rem .75rem; transition: transform .15s ease, background .15s ease;
+    }
+    nav.toc a:hover{ background:var(--hover); transform: translateY(-1px); }
+    nav.toc .badge{ font-family:var(--mono); font-size:.72rem; color:#0b1020; background:var(--accent);
+      padding:.12rem .4rem; border-radius:.5rem; }
+
+    .container{ max-width:1100px; margin:1rem auto 4rem; padding:0 1.25rem; }
+    .controls{ display:flex; flex-wrap:wrap; gap:.5rem; margin:.5rem 0 1rem; }
+    .btn{ cursor:pointer; background:var(--panel); color:var(--ink); border:1px solid rgba(139,178,255,.2);
+      padding:.55rem .75rem; border-radius:.75rem; font-size:.9rem; }
+    .btn:hover{ background:var(--hover); }
+    .search{ flex:1; min-width:240px; display:flex; gap:.5rem; }
+    .search input{ flex:1; background:var(--panel); border:1px solid rgba(139,178,255,.2); color:var(--ink);
+      padding:.55rem .65rem; border-radius:.65rem; }
+
+    section.lesson{
+      background:var(--panel); border:1px solid rgba(139,178,255,.15); border-radius:1.25rem; padding:1rem;
+      margin:1.25rem 0 1.75rem; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    section.lesson h2{ margin:0 0 .35rem; font-size:1.2rem; }
+    .kicker{ color:var(--muted); font-size:.9rem; margin:.15rem 0 .75rem; }
+
+    .keypoints{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:.5rem; list-style:none; padding:0; margin:0; }
+    .keypoints li{ background:rgba(139,178,255,.06); border:1px dashed rgba(139,178,255,.25); border-radius:.9rem; padding:.6rem .7rem; }
+
+    details.block{ border:1px solid rgba(139,178,255,.18); border-radius:1rem; padding:.65rem .8rem; margin:.7rem 0; background:rgba(139,178,255,.05); }
+    details.block[open]{ background:rgba(139,178,255,.08); box-shadow: inset 0 0 0 1px rgba(139,178,255,.12); }
+    summary{ cursor:pointer; font-weight:600; }
+    summary::marker{ color:var(--accent2); }
+    .explain{ color:var(--ink); opacity:.95; margin:.5rem 0 0; }
+    .muted{ color:var(--muted); }
+    .grid-2{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:.8rem; }
+
+    .foot{ color:var(--muted); text-align:center; font-size:.85rem; margin-top:1.25rem; }
+    .tag{ font-family:var(--mono); font-size:.72rem; padding:.08rem .4rem; border-radius:.4rem; border:1px solid rgba(139,178,255,.28); color:var(--accent2); }
+
+    /* small helper chips */
+    .chips{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0 .2rem; }
+    .chip{ font-family:var(--mono); font-size:.72rem; padding:.12rem .4rem; border-radius:.5rem; background:rgba(139,178,255,.08); border:1px solid rgba(139,178,255,.25); }
+
+    /* highlight search matches */
+    mark{ background:rgba(110,231,183,.25); padding:.05rem .1rem; border-radius:.2rem; }
+
+    @media (prefers-reduced-motion:no-preference){
+      details.block{ transition: background .2s ease; }
+      nav.toc a{ transition: transform .15s ease, background .15s ease, border-color .15s ease; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h1>Class 07 — Visual Design Essentials (Interactive Tutorial)</h1>
+      </div>
+      <div class="subtitle">Visual Hierarchy · Gestalt Theory · Layout Principles · Typography</div>
+      <nav class="toc" aria-label="Table of contents">
+        <a href="#hierarchy"><span class="badge">01</span> Visual Hierarchy</a>
+        <a href="#gestalt"><span class="badge">02</span> Gestalt Theory</a>
+        <a href="#layout"><span class="badge">03</span> Layout Principles</a>
+        <a href="#type"><span class="badge">04</span> Typography</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="controls">
+      <button class="btn" id="expandAll">Expand all</button>
+      <button class="btn" id="collapseAll">Collapse all</button>
+      <div class="search" role="search">
+        <input id="q" type="search" placeholder="Search key points & explanations… (e.g., proximity, reverse type)" aria-label="Search" />
+        <button class="btn" id="clearQ" title="Clear">Clear</button>
+      </div>
+    </div>
+
+    <!-- Lesson 01: Visual Hierarchy -->
+    <section class="lesson" id="hierarchy">
+      <h2>Lesson 01 — Visual Hierarchy <span class="tag">priority & flow</span></h2>
+      <p class="kicker">Guide the eye so users find what matters first. Use size, contrast, position, and rhythm along reading gravity (Gutenberg patterns).</p>
+
+      <ul class="keypoints">
+        <li><strong>Purpose:</strong> Control delivery of the experience; remove ambiguity about where to look first.</li>
+        <li><strong>Reading Gravity:</strong> Place important items along natural scanning paths; adjust for language direction.</li>
+        <li><strong>Visual Cues:</strong> Repetition, gradation, diagonal & gestural lines create motion and emphasis.</li>
+        <li><strong>Context:</strong> Reinforce with UX standards, mental models, and task goals.</li>
+      </ul>
+
+      <details class="block" open>
+        <summary>How hierarchy directs attention</summary>
+        <div class="explain">Hierarchy ranks elements by importance using <em>size</em>, <em>contrast</em>, <em>placement</em>, and <em>whitespace</em>. Headlines stand out; supportive copy recedes. Calls‑to‑action sit on the path of highest attention to reduce decision friction.</div>
+      </details>
+      <details class="block">
+        <summary>Gutenberg Diagram & alternate patterns</summary>
+        <div class="explain">Text‑heavy layouts follow a primary → terminal diagonal. Add strong focal points or directional cues to override default scanning and guide the eye through a custom story.</div>
+      </details>
+      <details class="block">
+        <summary>Rhythm & movement</summary>
+        <div class="explain">Repeating modules, progressive scale, and directional lines create a visual beat. This rhythm helps users predict where to look next, improving comprehension and speed.</div>
+      </details>
+    </section>
+
+    <!-- Lesson 02: Gestalt -->
+    <section class="lesson" id="gestalt">
+      <h2>Lesson 02 — Gestalt Theory <span class="tag">grouping & perception</span></h2>
+      <p class="kicker">We see structured wholes. Past experience, current context, and goals shape what we perceive.</p>
+
+      <ul class="keypoints">
+        <li><strong>Perception Bias:</strong> Past, present context, and goals filter attention.</li>
+        <li><strong>Grouping:</strong> Proximity & similarity bind related elements.</li>
+        <li><strong>Completing Forms:</strong> Continuity, closure, symmetry simplify complexity.</li>
+        <li><strong>Focus:</strong> Figure/Ground separates content from background; Common Fate ties motion.</li>
+      </ul>
+
+      <div class="grid-2">
+        <details class="block" open>
+          <summary>Design implications (avoid ambiguity, be consistent)</summary>
+          <div class="explain">Place controls consistently; match users’ expectations for location, color, and style. When ambiguity is unavoidable, use conventions or prime users with copy and context to steer interpretation.</div>
+        </details>
+        <details class="block">
+          <summary>Applying the 7 principles quickly</summary>
+          <div class="explain">
+            <ul>
+              <li><strong>Proximity:</strong> Group labels near inputs.</li>
+              <li><strong>Similarity:</strong> Style similar controls alike.</li>
+              <li><strong>Continuity:</strong> Align edges to form sightlines.</li>
+              <li><strong>Closure:</strong> Implied boxes via spacing, not borders.</li>
+              <li><strong>Symmetry:</strong> Balance columns and modules.</li>
+              <li><strong>Figure/Ground:</strong> Ensure content contrast & depth.</li>
+              <li><strong>Common Fate:</strong> Animate related items together.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Lesson 03: Layout Principles -->
+    <section class="lesson" id="layout">
+      <h2>Lesson 03 — Layout Principles <span class="tag">structure & clarity</span></h2>
+      <p class="kicker">Use proximity, alignment, contrast, and hierarchy. Negative space is a design tool, not wasted room.</p>
+
+      <ul class="keypoints">
+        <li><strong>Proximity:</strong> Keep related items close; separate unrelated ones.</li>
+        <li><strong>Alignment:</strong> Build clean sightlines; snap edges to a grid.</li>
+        <li><strong>Negative Space:</strong> Create breathing room; improve scan paths.</li>
+        <li><strong>Contrast:</strong> Use size/weight/color to set focal points.</li>
+        <li><strong>Hierarchy:</strong> Clear levels: headline → subhead → body.</li>
+      </ul>
+
+      <details class="block" open>
+        <summary>From cluttered to clear (quick checklist)</summary>
+        <div class="explain">
+          <ul>
+            <li>Reduce competing alignments to 1–2 columns.</li>
+            <li>Increase spacing inside groups; increase spacing between groups.</li>
+            <li>Promote one focal point per view; demote the rest.</li>
+            <li>Prefer spacing/weight over borders and boxes.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="block">
+        <summary>Grid & rhythm</summary>
+        <div class="explain">Use an 8‑pt spacing scale and a 4‑pt baseline for type. Repeat column widths and gutters to create rhythm across sections and pages.</div>
+      </details>
+    </section>
+
+    <!-- Lesson 04: Typography -->
+    <section class="lesson" id="type">
+      <h2>Lesson 04 — Typography <span class="tag">readability & tone</span></h2>
+      <p class="kicker">Set body copy for comfortable reading; use emphasis sparingly. Moderation beats decoration.</p>
+
+      <ul class="keypoints">
+        <li><strong>Body Size:</strong> Print 9–11pt; Digital ≈16px (adjust per face).</li>
+        <li><strong>Legibility:</strong> Avoid ALL CAPS, scripts, ultra‑thin/heavy for long text.</li>
+        <li><strong>Reverse Type:</strong> Don’t use for body copy; prefer dark text on light.</li>
+        <li><strong>Overlays:</strong> Avoid text over busy images; prioritize contrast.</li>
+        <li><strong>Font Variety:</strong> ≤3 typefaces (web/print); ≤1 in apps (use family styles).</li>
+      </ul>
+
+      <div class="grid-2">
+        <details class="block" open>
+          <summary>Practical body‑copy settings</summary>
+          <div class="explain">
+            <ul>
+              <li>Line length 45–75 chars; line‑height ~1.4–1.6.</li>
+              <li>Regular weight for paragraphs; bold for headings only.</li>
+              <li>Use italics for emphasis; avoid for extended text.</li>
+              <li>Increase tracking slightly for all‑caps in short labels.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="block">
+          <summary>Common type pitfalls</summary>
+          <div class="explain">Drop shadows, outlines, underlines, and boxes add noise. If you need emphasis, use contrast in size/weight/spacing instead of effects.</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="lesson" id="integration">
+      <h2>Putting it all together <span class="tag">system thinking</span></h2>
+      <p class="kicker">Hierarchy sets priorities → Gestalt groups the parts → Layout structures the canvas → Typography makes it readable.</p>
+      <details class="block" open>
+        <summary>One‑minute pre‑flight checklist</summary>
+        <div class="explain">
+          <div class="chips">
+            <span class="chip">1 focal point</span>
+            <span class="chip">Grid aligned</span>
+            <span class="chip">Proximity groups</span>
+            <span class="chip">Adequate whitespace</span>
+            <span class="chip">Readable body size</span>
+            <span class="chip">Contrast AA+</span>
+            <span class="chip">≤ 3 typefaces</span>
+          </div>
+          <ul>
+            <li><strong>Can I tell what’s most important in 3 seconds?</strong></li>
+            <li><strong>Are related items grouped and aligned?</strong></li>
+            <li><strong>Is body text comfortable to read?</strong></li>
+            <li><strong>Did I avoid decorative effects for emphasis?</strong></li>
+          </ul>
+        </div>
+      </details>
+      <p class="foot">Tip: You can <em>Expand all</em> to review before export, then <em>Collapse all</em> for a concise handout.</p>
+    </section>
+  </main>
+
+  <script>
+    // Expand/Collapse All
+    const expandAllBtn = document.getElementById('expandAll');
+    const collapseAllBtn = document.getElementById('collapseAll');
+    const allDetails = () => Array.from(document.querySelectorAll('details.block'));
+
+    expandAllBtn.addEventListener('click', () => { allDetails().forEach(d => d.open = true); });
+    collapseAllBtn.addEventListener('click', () => { allDetails().forEach(d => d.open = false); });
+
+    // Search filter with highlight
+    const q = document.getElementById('q');
+    const clearQ = document.getElementById('clearQ');
+
+    function normalize(s){ return (s||'').toLowerCase(); }
+
+    function removeMarks(node){
+      node.querySelectorAll('mark').forEach(m => {
+        const t = document.createTextNode(m.textContent);
+        m.parentNode.replaceChild(t, m);
+      });
+    }
+
+    function highlight(el, term){
+      if(!term) return;
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+        acceptNode: (n) => n.nodeValue.trim().length ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+      });
+      const hits = [];
+      while(walker.nextNode()){ hits.push(walker.currentNode); }
+      hits.forEach(textNode => {
+        const idx = textNode.nodeValue.toLowerCase().indexOf(term.toLowerCase());
+        if(idx >= 0){
+          const span = document.createElement('span');
+          const before = textNode.nodeValue.slice(0, idx);
+          const match = textNode.nodeValue.slice(idx, idx + term.length);
+          const after = textNode.nodeValue.slice(idx + term.length);
+          span.innerHTML = `${before}<mark>${match}</mark>${after}`;
+          textNode.parentNode.replaceChild(span, textNode);
+        }
+      });
+    }
+
+    function filter(){
+      const term = normalize(q.value);
+      const lessons = Array.from(document.querySelectorAll('section.lesson'));
+      lessons.forEach(sec => {
+        // clear old highlights
+        removeMarks(sec);
+        const text = normalize(sec.textContent);
+        const match = term === '' || text.includes(term);
+        sec.style.display = match ? '' : 'none';
+        if(match && term) highlight(sec, term);
+        // auto‑open matching details
+        if(match){
+          sec.querySelectorAll('details.block').forEach(d => {
+            const dText = normalize(d.textContent);
+            d.open = term ? dText.includes(term) : d.open;
+          });
+        }
+      });
+    }
+
+    q.addEventListener('input', filter);
+    clearQ.addEventListener('click', () => { q.value = ''; filter(); q.focus(); });
+
+    // Anchor scroll offset for sticky header
+    function offsetAnchors(){
+      if(location.hash.length === 0) return;
+      window.scrollTo({ top: window.pageYOffset - 70 });
+    }
+    window.addEventListener('hashchange', offsetAnchors);
+    window.setTimeout(offsetAnchors, 1);
+  </script>
+</body>
+</html>
